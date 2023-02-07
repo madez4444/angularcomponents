@@ -1,0 +1,118 @@
+<h1>Order History</h1>
+
+<!--mat-expansion-panel disabled hideToggle>
+  <mat-expansion-panel-header>
+    This is the expansion title
+  </mat-expansion-panel-header>
+
+  <ng-template matExpansionPanelContent>
+    Some deferred content
+  </ng-template>
+</mat-expansion-panel-->
+
+<mat-expansion-panel disabled hideToggle class="datalist-controllers">
+  <mat-expansion-panel-header style="height: unset;">
+    <div class="filterarea">
+      <div class="mob1row">
+        <div class="filter" style="border-left: none;">
+          <span>Status</span>
+          <ul class="multioption">
+            <li>
+              <mat-checkbox [(ngModel)]="_filter.multioption.pending" [color]="'primary'">Pending</mat-checkbox>
+            </li>
+            <li>
+              <mat-checkbox [(ngModel)]="_filter.multioption.inprogress" [color]="'primary'">In Progress</mat-checkbox>
+            </li>
+            <li>
+              <mat-checkbox [(ngModel)]="_filter.multioption.completed" [color]="'primary'">Completed</mat-checkbox>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="mob1row">
+        <div class="mob2cols">
+          <div class="filter">
+            <span>Product Line</span>
+            <mat-form-field class="singleoption" disableUnderline>
+              <div class="customarrow"></div>
+              <mat-select [(ngModel)]="_filter.singleoption" disableUnderline>
+                <mat-option [value]="'allprod'">All Product Lines</mat-option>
+                <mat-option [value]="'cement'">Cement</mat-option>
+                <mat-option [value]="'agreggates'">Aggregates</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="mob2cols">
+          <div class="filter">
+            <mat-form-field class="dateoption" appearance="legacy">
+              <mat-label>From</mat-label>
+              <input [(ngModel)]="_filter.fromdate" matInput [matDatepicker]="fromdate">
+              <mat-datepicker-toggle matIconSuffix [for]="fromdate"></mat-datepicker-toggle>
+              <mat-datepicker #fromdate></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="filter">
+            <mat-form-field class="dateoption" appearance="legacy">
+              <mat-label>To</mat-label>
+              <input [(ngModel)]="_filter.todate" matInput [matDatepicker]="todate">
+              <mat-datepicker-toggle matIconSuffix [for]="todate"></mat-datepicker-toggle>
+              <mat-datepicker #todate></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="searchbar">
+      <input type="text" placeholder="Search for Order Number" [(ngModel)]="_filter.searchbar"/>
+      <img class="customicon" src="assets/icons/search.svg" style="right: 0.6rem;top: 0.3rem;">
+    </div>
+  </mat-expansion-panel-header>
+</mat-expansion-panel>
+
+<div class="nodata" *ngIf="!_countdata()">
+  <img class="customicon" src="assets/icons/exclamation-solid.svg" style="right: calc(50% - 2rem); top: 5.3rem;width: 3rem;height: 3rem;opacity: .3;">
+  <h1>Nothing to display</h1>
+  <p>Please, adjust filters to see more results</p>
+</div>
+
+<div class="scrollarea" *ngIf="_countdata()">
+  <mat-expansion-panel disabled hideToggle class="datalist-tittles">
+    <mat-expansion-panel-header>
+      <div class="datalist-row">
+        <div style="width:{{widthsize}}%">Status</div>
+        <div style="width:{{widthsize-5}}%">Order Number</div>
+        <div style="width:{{widthsize}}%">Product Line</div>
+        <div style="width:{{widthsize+10}}%">Product</div>
+        <div style="width:{{widthsize-5}}%">Quantity</div>
+        <div style="width:{{widthsize}}%">Date Requested</div>
+      </div>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+
+  <div *ngFor="let data of _datalist;">
+    <mat-expansion-panel disabled hideToggle *ngIf="_filterdata(data)">
+      <mat-expansion-panel-header>
+        <div class="datalist-row">
+          <div style="width:{{widthsize}}%" class="datalist-cell">
+            <span [ngClass]="{
+              'token-inprogress': data.status.key == 'inprogress',
+              'token-pending': data.status.key == 'pending',
+              'token-complete': data.status.key == 'completed'
+            }"></span>
+            {{data.status.displayName}}
+          </div>
+          <div style="width:{{widthsize-5}}%" class="datalist-cell">{{data.orderNumber}}</div>
+          <div style="width:{{widthsize}}%" class="datalist-cell">{{data.productLine.displayName}}</div>
+          <div style="width:{{widthsize+10}}%" class="datalist-cell">{{data.product}}</div>
+          <div style="width:{{widthsize-5}}%" class="datalist-cell">{{data.quantity}}</div>
+          <div style="width:{{widthsize}}%" class="datalist-cell">{{data.dateRequested | date: 'dd.MM.YYYY' }}</div>
+        </div>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </div>
+
+
+</div>

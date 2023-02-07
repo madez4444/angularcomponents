@@ -1,0 +1,73 @@
+.mob1row,
+.mob2cols {
+  display: inline list-item;
+  list-style: none;
+}
+@media only screen and (max-width: 1300px) {
+  .mob1row {
+    width: 100%;
+    display: block;
+  }
+
+  .filterarea {
+    height: unset !important;
+
+    .searchbar {
+      top: 1.8rem;
+    }
+
+    .filter:first-child {
+      border: none;
+    }
+  }
+
+  .scrollarea {
+    overflow: auto;
+    .mat-expansion-panel{
+      min-width: 66rem;
+    }
+  }
+}
+@media only screen and (max-width: 740px) {
+  .mob2cols {
+    display: inline-block;
+    height: 4.4rem;
+  }
+}
+@media only screen and (max-width: 630px) {
+  .mob2cols {
+    height: unset;
+  }
+
+  .filterarea {
+    padding-top: 3rem;
+    height: 23vh !important;
+
+    .filter {
+      display: inline !important;
+    }
+  }
+
+  .searchbar {
+    left: 1.5rem;
+    right: 4.5rem !important;
+    .customicon{
+      right: -2.4rem !important;
+    }
+    input {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width:518px) {
+  .filterarea {
+     height: unset !important;
+     .filter {
+       border-right: unset !important;
+
+       width: 100%;
+     }
+  }
+}
+//END

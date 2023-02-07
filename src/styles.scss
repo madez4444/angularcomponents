@@ -1,1 +1,128 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+  background-color: #f4f6f9;
+}
+
+h1 {
+  color: #001c3b;
+}
+
+$animationtime: .07s;
+$animationtimeslow: 2s;
+
+*{
+  transition: all $animationtime ease-out;
+  -webkit-transition: all $animationtime ease-out;
+  -moz-transition: all $animationtime ease-out;
+  -ms-transition: all $animationtime ease-out;
+  -o-transition: all $animationtime ease-out;
+}
+
+.animation{
+  transition: all $animationtimeslow ease-out;
+  -webkit-transition: all $animationtimeslow ease-out;
+  -moz-transition: all $animationtimeslow ease-out;
+  -ms-transition: all $animationtimeslow ease-out;
+  -o-transition: all $animationtimeslow ease-out;
+}
+
+
+
+.customicon {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.customarrow {
+  position: absolute;
+  top: 0.6rem;
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-right: 0.15em solid black;
+  border-top: 0.15em solid black;
+  transform: rotate(135deg);
+  margin-right: 1em;
+  margin-left: 1em;
+  right: 0rem;
+}
+
+//MATERIAL CUSTOMIZATIONS
+.mat-form-field-underline {
+  display: none;
+}
+.mat-select-arrow {
+  display: none;
+}
+.mat-datepicker-toggle {
+  position: absolute;
+  right: 0rem;
+  top: -0.4rem;
+}
+.mat-focused mat-label, .mat-form-field-should-float mat-label {
+  font-weight: bold;
+  color: #001c3b;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  top: 0.1rem;
+  position: relative;
+}
+
+
+
+
+
+
+//MYSC
+[class*="token-"] {
+  width: 2rem;
+  height: 1.4rem;
+  background-color: #cecece;
+  display: inline-block;
+  position: relative;
+  top: 0.3rem;
+  margin-right: 0.4rem;
+  border-radius: 0.3rem;
+
+  &.token-pending {
+    background-color: #fbb03b;
+  }
+  &.token-inprogress {
+    background-color: #3fa9f5;
+  }
+  &.token-complete {
+    background-color: #7ac943;
+  }
+
+}
+
+.multioption {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    display: inline;
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+
+    label {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.singleoption {
+  &:hover {
+    cursor: pointer;
+  }
+}
